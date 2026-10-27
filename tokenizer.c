@@ -11,16 +11,19 @@ int fileLoaded(FILE *file) {
 
 char *scanFile(char fileName[]) {
   FILE *file = fopen(fileName, "r");
+
   if (fileLoaded(file) != 0) {
     perror("Error loading file");
     printf("%s", fileName);
     return NULL;
   }
 
+  // find start and end of file to find size.
   fseek(file, 0, SEEK_END);
   long size = ftell(file);
   fseek(file, 0, SEEK_SET);
 
+  // set file contents to buffer
   char *buffer = malloc(size);
   if (buffer == NULL) {
     perror("Cant allocate buffer");
@@ -54,5 +57,6 @@ int main(int argc, char *argv[]) {
     printf("Wrong usage");
     return 1;
   }
+
   return 0;
 }
