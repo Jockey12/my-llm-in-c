@@ -23,6 +23,7 @@ char *scanFile(char fileName[]) {
   fseek(file, 0, SEEK_END);
   long size = ftell(file);
   fseek(file, 0, SEEK_SET);
+  assert(size > 0);
 
   // set file contents to buffer
   char *buffer = malloc(size);
@@ -47,6 +48,7 @@ int main(int argc, char *argv[]) {
   if (argc == 1) {
     printf("Usage: %s <file.txt>", argv[0]);
   } else if (argc == 3 && strcmp(argv[1], "train") == 0) {
+    assert(argv[2] != NULL);
     char *data = scanFile(argv[2]);
     if (data == NULL) {
       fprintf(stderr, "failed to load dataset\n");
