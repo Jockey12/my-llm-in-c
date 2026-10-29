@@ -2,3 +2,4 @@ a.out
 build/
 input/
 src/a.out/
+.DS_Store
