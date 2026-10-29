@@ -1,17 +1,12 @@
-#ifndef TOKENIZER_H
-#define TOKENIZER_H
-#include <stdio.h>
+#ifndef FILEIO_H
+#define FILEIO_H
 
-typedef struct Tokenizer Tokenizer;
+#include <stdio.h>
 int fileLoaded(FILE *file);
 char *scanFile(char fileName[]);
-int vocab_size(const Tokenizer *t);
-Tokenizer *train_bpe(const char *corpus_path, int vocab_size, int merge_rounds);
-int encode(const Tokenizer *t, char *text);
-int decode(const Tokenizer *t);
-#endif /* ifndef TOKENIZER_H */
+#endif /* ifndef FILEIO_H */
 
-#ifdef TOKENIZER_H_IMPLEMENTATION
+#ifdef FILEIO_H_IMPLEMENTATION
 
 #include <assert.h>
 #include <stdlib.h>
@@ -50,5 +45,4 @@ char *scanFile(char *fileName) {
   fclose(file);
   return buffer;
 }
-
-#endif /* ifndef TOKENIZER_H_IMPLEMENTATION */
+#endif /* ifdef FILEIO_H_IMPLEMENTATION */

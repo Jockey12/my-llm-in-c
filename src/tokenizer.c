@@ -1,3 +1,4 @@
+#define TOKENIZER_H_IMPLEMENTATION
 #define FILEIO_H_IMPLEMENTATION
 #include "tokenizer.h"
 #include <assert.h>
@@ -6,6 +7,11 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
+    Tokenizer t;
+    t.vsize = 4;
+    t.fileName = "hi";
+    t.file = fopen(t.fileName, "r");
+
   if (argc == 1) {
     printf("Usage: %s train <file.txt>", argv[0]);
   } else if (argc == 3 && strcmp(argv[1], "train") == 0) {
