@@ -5,7 +5,7 @@ typedef struct Mat Mat; // Matrix definition
 struct Mat make_mat(int rows, int cols);
 void mat_print(struct Mat *m);
 void mat_add(struct Mat *A, struct Mat *B, struct Mat *C);
-float mat_mul(float *A, int m, int n, float *B, int n2, int p); // matrix multiply
+float mat_mul(struct Mat *A, int m, int n, struct Mat *B, int n2, int p); // matrix multiply
 /* float dot(float *a, float *b, int n); // dot product */
 /* float badd(float *a, float *b, float scalar, int n); // Binary Add */
 #endif /* ifndef LA_H_ */
@@ -14,6 +14,7 @@ float mat_mul(float *A, int m, int n, float *B, int n2, int p); // matrix multip
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 struct Mat {
     int rows;
     int cols;
@@ -38,5 +39,8 @@ void mat_print(struct Mat *m) {
     }
     printf("\n");
   }
+}
+float mat_mul(struct Mat *A, int m, int n, struct Mat *B, int n2, int p) {
+  assert(A.cols == B.rows);
 }
 #endif /* ifndef LA_H_IMPLEMENTATION */
