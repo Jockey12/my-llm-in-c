@@ -12,9 +12,9 @@ char *scanFile(char fileName[]);
 #include <stdlib.h>
 
 int fileLoaded(FILE *file) { return file == NULL; }
+
 char *scanFile(char *fileName) {
   FILE *file = fopen(fileName, "r");
-
   if (fileLoaded(file) != 0) {
     perror("Error loading file");
     printf("%s", fileName);
