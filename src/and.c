@@ -10,7 +10,7 @@ float forward_pass(float x1, float x2, float w1, float w2, float b) {
   return z >= 0.0 ? 1.0 : 0.0;
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
   srand((unsigned)time(NULL) ^ (unsigned)getpid());
   float x1 = rand_float() * 2.0f - 1.0f;
   float x2 = rand_float() * 2.0f - 1.0f;
@@ -20,6 +20,17 @@ int main(int argc, char *argv[]) {
   float y = 0.0f;
   float b = rand_float() * 2.0f - 1.0f;
   float lr = 0.1;
+
+  float inputs[4][2] = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+  float outputs[4] = {0, 0, 0, 1};
+  /* AND Gate
+  ** x1 x2 out
+  ** 0  0  0
+  ** 0  1  0
+  ** 1  0  0
+  ** 1  1  1
+  */
+
   /* struct Mat weight = make_mat(1, 2); */
   /* for (int i = 0; i < weight.rows; i++) { */
   /*   for (int j = 0; j < weight.cols; j++) { */
@@ -27,20 +38,5 @@ int main(int argc, char *argv[]) {
   /*   } */
   /* } */
 
-  for (int epoch = 0; epoch < 5; epoch++) {
-    for (int i = 0; i < 5; i++) {
-    printf("%f\n",forward_pass(x1, x2, w1, w2, b));
-    }
-  }
-
-  /* AND Gate
-  ** x1 x2 output
-  ** 0  0  0
-  ** 0  1  0
-  ** 1  0  0
-  ** 1  1  1
-  */
-
-  /* mat_print(&weight); */
   return 0;
 }
