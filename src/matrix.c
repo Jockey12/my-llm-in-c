@@ -10,7 +10,7 @@ int main() {
   struct Mat b = make_mat(3,3);
   for (int i = 0; i < a.rows; i++) {
     for (int j = 0; j < a.cols; j++) {
-      a.data[i * a.cols + j] = (float)(rand() % 100 + 1);
+      a.data[i * a.cols + j] = rand_float() * 2.0f - 1.0f;
     }
   }
 

@@ -2,16 +2,28 @@
 #include "la.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/utsname.h>
 #include <time.h>
 #include <unistd.h>
 
+void gen_seed() {
+  struct utsname uts;
+  uname(&uts);
+  if (strcmp(uts.sysname, "Darwin") == 0) {
+    srand((unsigned)time(NULL) ^ (unsigned)getpid());
+  } else {
+    srand(time(NULL));
+  }
+}
 /* float forward_pass(float x1, float x2, float w1, float w2, float b) { */
 /*   float z = w1 * x1 + w2 * x2 + b; */
 /*   return z >= 0.0 ? 1.0 : 0.0; */
 /* } */
 
 int main(void) {
-  srand((unsigned)time(NULL) ^ (unsigned)getpid());
+  gen_seed();
+
   /* float x1 = rand_float() * 2.0f - 1.0f; */
   /* float x2 = rand_float() * 2.0f - 1.0f; */
 
@@ -28,12 +40,12 @@ int main(void) {
 
   for (int i = 0; i < A.rows; i++) {
     for (int j = 0; j < A.cols; j++) {
-      A.data[i * A.cols + j] = rand_float() * 2.0f - 1.5f;
+      A.data[i * A.cols + j] = rand_float() * 2.0f - 1.0f;
     }
   }
   for (int i = 0; i < B.rows; i++) {
     for (int j = 0; j < B.cols; j++) {
-      B.data[i * B.cols + j] = rand_float() * 2.0f - 1.5f;
+      B.data[i * B.cols + j] = rand_float() * 2.0f - 1.0f;
     }
   }
   mat_print(&A);
