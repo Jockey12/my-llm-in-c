@@ -35,16 +35,16 @@ int main(void) {
 
   /* float inputs[4][2] = {{0, 0}, {0, 1}, {1, 0}, {1, 1}}; */
   /* float outputs[4] = {0, 0, 0, 1}; */
-  struct Mat A = make_mat(1, 4);
-  struct Mat B = make_mat(4, 2);
+  struct Mat A = make_mat(2, 2);
+  struct Mat B = make_mat(2, 2);
 
-  for (int i = 0; i < A.rows; i++) {
-    for (int j = 0; j < A.cols; j++) {
+  for (size_t i = 0; i < A.rows; i++) {
+    for (size_t j = 0; j < A.cols; j++) {
       A.data[i * A.cols + j] = rand_float() * 2.0f - 1.0f;
     }
   }
-  for (int i = 0; i < B.rows; i++) {
-    for (int j = 0; j < B.cols; j++) {
+  for (size_t i = 0; i < B.rows; i++) {
+    for (size_t j = 0; j < B.cols; j++) {
       B.data[i * B.cols + j] = rand_float() * 2.0f - 1.0f;
     }
   }
