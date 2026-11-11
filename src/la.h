@@ -70,6 +70,7 @@ void mat_print(struct Mat *m) {
 /* void mat_add(struct Mat *A, struct Mat *B) { printf("TODO"); } */
 
 struct Mat mat_mul(const struct Mat *A, const struct Mat *B) {
+  assert(A->cols == B->rows);
   struct Mat C = make_mat(A->rows, B->cols);
   // Loop through matrixs
   for (size_t i = 0; i < A->rows; ++i) {

@@ -35,25 +35,25 @@ int main(void) {
 
   /* float inputs[4][2] = {{0, 0}, {0, 1}, {1, 0}, {1, 1}}; */
   /* float outputs[4] = {0, 0, 0, 1}; */
-  struct Mat A = make_mat(2, 2);
-  struct Mat B = make_mat(2, 2);
+  struct Mat bias = make_mat(2, 1);
+  struct Mat w1 = make_mat(1, 4);
 
-  for (size_t i = 0; i < A.rows; i++) {
-    for (size_t j = 0; j < A.cols; j++) {
-      A.data[i * A.cols + j] = rand_float() * 2.0f - 1.0f;
+  for (size_t i = 0; i < bias.rows; i++) {
+    for (size_t j = 0; j < bias.cols; j++) {
+      bias.data[i * bias.cols + j] = rand_float() * 2.0f - 1.0f;
     }
   }
-  for (size_t i = 0; i < B.rows; i++) {
-    for (size_t j = 0; j < B.cols; j++) {
-      B.data[i * B.cols + j] = rand_float() * 2.0f - 1.0f;
+  for (size_t i = 0; i < w1.rows; i++) {
+    for (size_t j = 0; j < w1.cols; j++) {
+      w1.data[i * w1.cols + j] = rand_float() * 2.0f - 1.0f;
     }
   }
-  mat_print(&A);
+  mat_print(&bias);
   printf("-----------\n");
-  mat_print(&B);
+  mat_print(&w1);
   printf("-----------\n");
 
-  struct Mat C = mat_mul(&A, &B);
+  struct Mat C = mat_mul(&bias, &w1);
   mat_print(&C);
   printf("-----------\n");
   /* AND Gate

@@ -7,10 +7,10 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-    Tokenizer t;
-    t.vsize = 4;
-    t.fileName = "hi";
-    t.file = fopen(t.fileName, "r");
+  Tokenizer t;
+  t.vsize = 4;
+  t.fileName = "hi";
+  t.file = fopen(t.fileName, "r");
 
   if (argc == 1) {
     printf("Usage: %s train <file.txt>", argv[0]);
@@ -27,6 +27,5 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-
-return 0;
+  return 0;
 }
