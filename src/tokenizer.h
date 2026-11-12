@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 typedef struct Tokenizer Tokenizer;
+typedef struct BPEPair BPEPair;
 int vocab_size(const Tokenizer *t);
 Tokenizer *train_bpe(const char *corpus_path, int vocab_size, int merge_rounds);
 int encode(const Tokenizer *t, char *text);
@@ -16,11 +17,20 @@ int decode(const Tokenizer *t);
 #include <stdlib.h>
 
 typedef struct Tokenizer {
-    int vsize;
-    int merge_r;
-    char *path;
-    char *fileName;
-    FILE *file ;
+  int vocab_size;
+  int merge_count;
+  char *vocab_path;
+  char **vocab;
+  int *vocab_indices;
+  BPEPair *merges;
+  char *text_buffer;
+  int text_len;
 } Tokenizer;
+
+typedef struct BPEPair {
+  char *left;
+  char *right;
+  int count;
+} BPEPair;
 
 #endif /* ifndef TOKENIZER_H_IMPLEMENTATION */
